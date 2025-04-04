@@ -1,0 +1,20 @@
+{
+    "tarefas": [
+
+    ],
+    "categorias": [
+        {
+            "id": 1,
+            "name": "Casa"
+        },
+        {
+            "id": 2,
+            "name": "Faculdade"
+        },
+        {
+            "id": 3,
+            "name": "Trabalho"
+        }
+        
+    ]
+}
