@@ -1,16 +1,29 @@
+import { useState } from 'react';
+
 import Input from './Input';
 
 import styles from './TaskForm.module.css';
 
-function TaskForm() {
+function TaskForm({handleSubmit}) {
+
+    const [task, setTask] = useState({})
 
     function handleOnChange(e) {
-       
+        
+        setTask({ ...task, [e.target.name]: e.target.value })
+        
     }
 
 
     function submit(e) {
         e.preventDefault();
+        if(!task.name || !task.description) {
+            alert("Algum dos Campos não foi preenchido")
+        } else {
+            handleSubmit(task)
+        }
+        
+
     }
 
     return (
