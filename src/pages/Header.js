@@ -13,9 +13,8 @@ function Header() {
 
     return (
         <div className={styles.header}>
-            {!showFormTask && (
-                <h1>Lista de Tarefas</h1>
-            )}
+
+            <h1>{!showFormTask ? 'Lista de Tarefas' : 'Formulario Tarefa'}</h1>
 
             {showFormTask && (
                 <TaskForm />
