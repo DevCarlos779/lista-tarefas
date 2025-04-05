@@ -1,14 +1,14 @@
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import Container from './components/layout/Container';
+import Header from './pages/Header';
+import Tasks from './pages/Tasks';
 
 function App() {
   return (
-    <Router>
+      <Container>
+          <Header />
 
-      
-
-    </Router>
-    
-    
+          <Tasks />
+      </Container>       
   );
 }
 
