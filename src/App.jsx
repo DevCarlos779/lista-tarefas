@@ -5,10 +5,14 @@ import TodoForm from './components/TodoForm'
 
 import './App.css'
 import Search from "./components/Search";
+import Filter from "./components/Filter";
 
 function App() {
 
   const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("All");
+  const [sort, setSort] = useState("Asc");
+
   const [todos, setTodos] = useState([
     {
       id: 1,
@@ -74,10 +78,30 @@ function App() {
         search={search}
         setSearch={setSearch}
       />
-      <div className="todo-list">
-        {todos.length > 0 ? (
+      <Filter 
+        filter={filter}
+        setFilter={setFilter}
+        setSort={setSort}
+      />
 
-          todos.filter((todo) => todo.text.toLowerCase().includes(search.toLowerCase())).map((todo) => (
+      <div className="todo-list">
+        {todos
+          .filter((todo) => 
+            filter === "All" 
+            ? true 
+            : filter === "Completed" 
+            ? todo.isCompleted 
+            : !todo.isCompleted
+          )
+          .filter((todo) =>
+             todo.text.toLowerCase().includes(search.toLowerCase())
+          )
+          .sort((a, b) =>
+            sort === "Asc"
+            ? a.text.localeCompare(b.text)
+            : b.text.localeCompare(a.text)
+          )
+          .map((todo) => (
             <Todo
               todo={todo}
               key={todo.id}
@@ -85,10 +109,7 @@ function App() {
               removeTodo={removeTodo}
             />
           ))
-        ) : (
-          <p>Não Há Tarefas!</p>
-        )}
-        
+        }
       </div>
       <TodoForm 
         addTodo={addTodo}
